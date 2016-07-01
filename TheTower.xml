@@ -1,0 +1,2188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "TheTower"
+    </assembly>
+    <members>
+        <member name="M:App.ResetGame">
+Reset stanu gry
+</member>
+        <member name="M:App.ProcessEvents">
+przetwarzanie zdarzeń, które przyszły
+</member>
+        <member name="M:App.Update(System.Double)">
+aktualizacja
+</member>
+        <member name="M:App.Draw">
+rysowanie
+</member>
+        <member name="M:App.comparePos(boost.shared_ptr&lt;Player&gt;)">
+Porównuje pozycję gracza z pozycją "kamery"
+</member>
+        <member name="M:App.updatePos(System.Double)">
+Uaktualnia pozycję "kamery" w świecie gry
+</member>
+        <member name="M:App.getPos">
+Zwraca pozycję "kamery" w świecie gry
+</member>
+        <member name="M:App.Run">
+Uruchamia grę
+</member>
+        <member name="M:App.#ctor(System.UInt32,System.UInt32,System.Boolean)">
+Domyślny konstruktor, ustawia parametry oraz tworzy niezbędne obiekty
+</member>
+        <member name="T:App">
+Klasa opisująca główną pętlę gry
+</member>
+        <member name="D:OptionsPtr">
+Wskaźnik na obiekt opcji gry
+</member>
+        <member name="M:Options.saveConfigToFile">
+Zapisuje ustawienia do pliku
+</member>
+        <member name="M:Options.processEvents">
+przetwarzanie zdarzeń, które przyszły
+</member>
+        <member name="M:Options.draw">
+Rysowanie
+</member>
+        <member name="M:Options.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="T:Options">
+Klasa opisująca menu z opcjami gry
+</member>
+        <member name="D:MenuPtr">
+Wskaźnik na obiekt menu gry
+</member>
+        <member name="M:Menu.Draw">
+rysowanie
+</member>
+        <member name="M:Menu.ProcessEvents">
+przetwarzanie zdarzeń, które przyszły
+</member>
+        <member name="M:Menu.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="T:Menu">
+Klasa opisująca menu gry
+</member>
+        <member name="D:ScoreSubmitPtr">
+Wskaźnik na obiekt klasy SubmitScore
+</member>
+        <member name="M:ScoreSubmit.StoreInFile">
+Zapisuje wyniki do pliku
+</member>
+        <member name="M:ScoreSubmit.LetterPosition(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte)">
+Oblicza pozycję tekstury zadanej litery w atlasie tekstur
+</member>
+        <member name="M:ScoreSubmit.isDone">
+czy już ukończono
+</member>
+        <member name="M:ScoreSubmit.Draw">
+rysowanie
+</member>
+        <member name="M:ScoreSubmit.ProcessEvents">
+przetwarzanie zdarzeń, które przyszły
+</member>
+        <member name="M:ScoreSubmit.#ctor(System.UInt32)">
+Domyślny konstruktor, jako parametr zostają przekazane punkty gracza
+</member>
+        <member name="T:ScoreSubmit.Entry">
+Struktura opisująca pojedynczy wynik gracza
+</member>
+        <member name="T:ScoreSubmit">
+Klasa obsługująca ekran do wpisywania swojej nazwy gracza
+</member>
+        <member name="D:HallOfFamePtr">
+Wskaźnik na HallOfFame
+</member>
+        <member name="M:HallOfFame.loadFromFile">
+Wczytuje tablicę wyników z pliku
+</member>
+        <member name="M:HallOfFame.setActual(System.Boolean)">
+ustawia aktualność tablicy wyników
+</member>
+        <member name="M:HallOfFame.isActual">
+czy lista wyników jest aktualna
+</member>
+        <member name="M:HallOfFame.isDone">
+czy wszystko wykonano
+</member>
+        <member name="M:HallOfFame.proccessEvents">
+przetwarzanie zdarzeń, które przyszły
+</member>
+        <member name="M:HallOfFame.update(System.Double)">
+Aktualizacja
+</member>
+        <member name="M:HallOfFame.draw">
+Rysowanie
+</member>
+        <member name="M:HallOfFame.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="T:HallOfFame.Entry">
+Struktura opisująca pojedynczy wynik
+</member>
+        <member name="T:HallOfFame">
+Klasa opisująca "Hall of Fame", czyli tablicę najlepszych wyników
+</member>
+        <member name="D:TextRendererPr">
+Wskaźnik na renderer tekstu
+</member>
+        <member name="M:TextRenderer.draw(System.Int32,System.Int32,System.Double,System.Double)">
+Rysuj
+</member>
+        <member name="M:TextRenderer.drawNumber(System.UInt32,System.Double,System.Double,System.UInt32)">
+Wypisz zadaną liczbę na zadanej pozycji
+</member>
+        <member name="M:TextRenderer.drawText(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Double,System.Double)">
+Wypisz zadany tekst na zadanej pozycji
+</member>
+        <member name="M:TextRenderer.drawSpecial(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,System.Double,System.Double)">
+Napisz zadany znak specjalny na zadanej pozycji
+</member>
+        <member name="M:TextRenderer.drawLetter(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,System.Double,System.Double)">
+Napisz zadaną literę na zadanej pozycji
+</member>
+        <member name="M:TextRenderer.drawDigit(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,System.Double,System.Double)">
+Napisz zadaną cyfrę na zadanej pozycji
+</member>
+        <member name="M:TextRenderer.SetLayer(System.UInt32)">
+Ustawia warstwę na której ma zostać umieszczony tekst
+</member>
+        <member name="M:TextRenderer.SetSize(System.Double,System.Double)">
+Ustawianie rozmiaru tekstu
+</member>
+        <member name="M:TextRenderer.#ctor(System.Double,System.Double,System.UInt32)">
+Domyślny konstruktor, ustawia rozmiar tekstu
+</member>
+        <member name="T:TextRenderer">
+Klasa opisująca renderer do wypisywania tekstu
+</member>
+        <member name="M:SpriteGrid.setSprite(System.UInt32,System.UInt32,boost.shared_ptr&lt;Sprite&gt;)">
+Ustawia Sprite'a w zadanym miejscu
+</member>
+        <member name="M:SpriteGrid.storeSprite(FT.FieldType,boost.shared_ptr&lt;Sprite&gt;)">
+Przechowanie sprite'ów poziomu
+</member>
+        <member name="M:SpriteGrid.draw(System.Double)">
+rysowanie
+</member>
+        <member name="M:SpriteGrid.setLevel(boost.shared_ptr&lt;Level&gt;!System.Runtime.CompilerServices.IsConst,System.Double)">
+Ustawia zadany poziom w siatce
+</member>
+        <member name="M:SpriteGrid.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="T:SpriteGrid">
+Klasa opisująca siatkę gry
+</member>
+        <member name="D:PlayerPtr">
+Wskaźnik na obiekt gracza
+</member>
+        <member name="M:Player.Reset">
+Resetuje gracza
+</member>
+        <member name="M:Player.getPoints">
+Zwraca punkty gracza
+</member>
+        <member name="M:Player.CheckCollisionsWithLevel(System.Double,boost.shared_ptr&lt;Level&gt;)">
+Sprawdza kolizje z planszą
+</member>
+        <member name="M:Player.GetNextAabb(System.Double)">
+Zwraca następnego CollidBox'a gracza, po zadanym czasie dt
+</member>
+        <member name="M:Player.GetNextVerticalAabb(System.Double)">
+Zwraca następnego pionowego CollidBox'a gracza, po zadanym czasie dt
+</member>
+        <member name="M:Player.GetNextHorizontalAabb(System.Double)">
+Zwraca następnego poziomego CollidBox'a gracza, po zadanym czasie dt
+</member>
+        <member name="M:Player.GetAabb">
+Zwraca CollidBox'a gracza
+</member>
+        <member name="M:Player.GetBasicAabb">
+Zwraca podstawowego CollidBox'a  gracza
+</member>
+        <member name="M:Player.GetCurrentTile(System.UInt32*,System.UInt32*)">
+Zwraca współrzędne gracza w siatce mapy
+</member>
+        <member name="M:Player.IsAnyFieldBelowMe(System.Double,boost.shared_ptr&lt;Level&gt;)">
+Czy jest pode mną "klocek"
+</member>
+        <member name="M:Player.getNextYPosition(System.Double)">
+Następna pozycja y gracza, po zadanym czasie dt
+</member>
+        <member name="M:Player.getNextXPosition(System.Double)">
+Następna pozycja x gracza, po zadanaym czasie dt
+</member>
+        <member name="M:Player.playerOnGround">
+Gracz na ziemi
+</member>
+        <member name="M:Player.setDefaultMoving">
+Ustaw domyślne poruszanie się
+</member>
+        <member name="M:Player.forbidToJump">
+Zabroń skoku
+</member>
+        <member name="M:Player.allowToJump">
+Zezwól na skok
+</member>
+        <member name="M:Player.jump(System.Double)">
+Skok
+</member>
+        <member name="M:Player.fall">
+Spadanie
+</member>
+        <member name="M:Player.forbidGoingRight">
+Zabroń biegu w prawo
+</member>
+        <member name="M:Player.forbidGoingLeft">
+Zabroń biegu w lewo
+</member>
+        <member name="M:Player.stopRight">
+Zatrzymanie biegu w prawo
+</member>
+        <member name="M:Player.stopLeft">
+Zatrzymanie biegu w lewo
+</member>
+        <member name="M:Player.goRight">
+Bieg w prawo
+</member>
+        <member name="M:Player.goLeft">
+Bieg w lewo
+</member>
+        <member name="M:Player.getDefaultYAcceleration">
+Zwraca przyspieszenie gracza w pionie
+</member>
+        <member name="M:Player.getDefaultYVelocity">
+Zwraca prędkość gracza w pionie
+</member>
+        <member name="M:Player.getY">
+Zwraca pozycję y gracza
+</member>
+        <member name="M:Player.getX">
+Zwraca pozycję x  gracza
+</member>
+        <member name="M:Player.draw">
+rysowanie
+</member>
+        <member name="M:Player.update(System.Double,boost.shared_ptr&lt;Level&gt;)">
+aktualizacja stanu gracza
+</member>
+        <member name="M:Player.setSprites(boost.shared_ptr&lt;Sprite&gt;,boost.shared_ptr&lt;Sprite&gt;,boost.shared_ptr&lt;Sprite&gt;)">
+Ustawia sprite'y gracza
+</member>
+        <member name="M:Player.#ctor(System.Double,System.Double,System.UInt32)">
+Domyślny konstruktor, ustawia gracza na zadanej pozycji
+</member>
+        <member name="T:Player">
+Klasa opisująca postać gracza
+</member>
+        <member name="D:LevelPtr">
+Wskaźnik na mapę
+</member>
+        <member name="M:Level.GetFieldAabb(System.UInt32,System.UInt32)">
+Zwraca CollidBox'a zadanego pola
+</member>
+        <member name="M:Level.getHeigth">
+Zwraca wysokość mapy
+</member>
+        <member name="M:Level.getWidth">
+Zwraca szerokość mapy
+</member>
+        <member name="M:Level.Field(System.UInt32,System.UInt32)">
+Zwraca typ pola na zadanych współrzędnych
+</member>
+        <member name="M:Level.generateNewRow(System.UInt32)">
+Tworzy nowy rząd pól na zadanej wysokości
+</member>
+        <member name="M:Level.load">
+Wczytuje "mapę" gry
+</member>
+        <member name="M:Level.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="T:Level">
+Klasa opisująca mapę poziomu
+</member>
+        <member name="F:Aabb.m_max_x">
+pozycja prawego górnego narożnika
+</member>
+        <member name="F:Aabb.m_min_x">
+pozycja lewego dolnego narożnika
+</member>
+        <member name="M:Aabb.Move(System.Double,System.Double,System.Double,System.Double)">
+Przesuwa CollidBox'a o wskazany offset
+</member>
+        <member name="M:Aabb.GetMaxY">
+Zwraca pozycję y prawego górnego narożnika
+</member>
+        <member name="M:Aabb.GetMaxX">
+Zwraca pozycję x prawego górnego narożnika
+</member>
+        <member name="M:Aabb.GetMinY">
+Zwraca pozycję y lewego dolnego narożnika
+</member>
+        <member name="M:Aabb.GetMinX">
+Zwraca pozycję x lewego dolnego narożnika
+</member>
+        <member name="M:Aabb.IsOnRightOf(Aabb!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Sprawdzenie czy znajduję się na prawo od CollidBox'a w parametrze
+</member>
+        <member name="M:Aabb.IsOnLeftOf(Aabb!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Sprawdzenie czy znajduję się na lewo od CollidBox'a w parametrze
+</member>
+        <member name="M:Aabb.IsUnder(Aabb!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Sprawdzenie czy znajduję się pod CollidBox'em w parametrze
+</member>
+        <member name="M:Aabb.IsOver(Aabb!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Sprawdzenie czy znajduję się nad CollidBox'em w parametrze
+</member>
+        <member name="M:Aabb.Collides(Aabb!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Sprawdzenie czy zachodzi kolizja z CollidBox'em podanym w parametrze
+</member>
+        <member name="M:Aabb.#ctor(System.Double,System.Double,System.Double,System.Double)">
+domyślny konstruktor, tworzy CollidBox'a z podanych parametrów
+</member>
+        <member name="T:Aabb">
+Klasa opisująca CollidBoxy
+</member>
+        <member name="D:SpritePtr">
+Wskaźnik na Sprite'a
+</member>
+        <member name="M:Sprite.DrawCurrentFrame(System.Double,System.Double,System.Double,System.Double)">
+Rysowanie aktualnej klatki
+</member>
+        <member name="M:Sprite.Update(System.Double)">
+aktualizacja w zależności od czasu dt
+</member>
+        <member name="M:Sprite.SetCurrentFrame(System.UInt32)">
+Ustawia aktualną klatkę animacji sprite'a
+</member>
+        <member name="M:Sprite.#ctor(SpriteConfigData!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Domyślny konstruktor, tworzy obiekt z danych przekzanych w parametrze
+</member>
+        <member name="T:Sprite">
+KLasa opisująca Sprite'y
+</member>
+        <member name="M:ParticleSystem.Explode(std._List_iterator&lt;std._List_val&lt;std._List_simple_types&lt;SParticle&gt;&gt;&gt;)">
+Wybuch cząsteczki, na jej miejsce powstają nowe
+</member>
+        <member name="M:ParticleSystem.update">
+aktualizuje
+</member>
+        <member name="M:ParticleSystem.emitParticles">
+emituje nowe cząsteczki
+</member>
+        <member name="M:ParticleSystem.draw">
+rysowanie
+</member>
+        <member name="M:ParticleSystem.#ctor(System.Double,System.Double)">
+Domyślny konstruktor, ustawia emiter cząsteczek w zadanym miejscu
+</member>
+        <member name="T:ParticleSystem">
+Klasa opisująca system efektów cząsteczkowych (w tym wypadku fajerwerki w menu "SubmitScore")
+</member>
+        <member name="T:SParticle">
+Struktura opisująca pojedynczą cząsteczkę
+</member>
+        <member name="F:Engine.fps">
+Ilość klatek na sekundę
+</member>
+        <member name="M:Engine.loadConfigFromFile">
+Wczytuje konfigurację z pliku
+</member>
+        <member name="M:Engine.isSoundOn">
+Czy dźwięk jest włączony
+</member>
+        <member name="M:Engine.getPlayerSprite">
+Zwraca informację o Spricie gracza
+</member>
+        <member name="M:Engine.getResolution">
+Zwraca rozdzielczość gry
+</member>
+        <member name="M:Engine.setResolution(RS.Resolution)">
+Ustawia rozdzielczość gry
+</member>
+        <member name="M:Engine.getSound">
+Zwraca wskaźnik na obiekt obsługujący dźwięk gry
+</member>
+        <member name="M:Engine.Resize(System.UInt32,System.UInt32)">
+Zmienia rozmiar okna
+</member>
+        <member name="M:Engine.getWindowHeigth">
+Zwraca wysokość okna
+</member>
+        <member name="M:Engine.getWindowWidth">
+Zwraca szerokość okna
+</member>
+        <member name="M:Engine.setWindowSize(System.UInt32,System.UInt32)">
+Ustawia rozmiar okna
+</member>
+        <member name="M:Engine.getScreen">
+Zwraca powierzchnię ekranu
+</member>
+        <member name="M:Engine.setGameState(GS.GameState)">
+Ustawia stan gry
+</member>
+        <member name="M:Engine.getState">
+Zwraca aktualny stan gry
+</member>
+        <member name="M:Engine.getRenderer">
+Zwraca Renderer
+</member>
+        <member name="M:Engine.getSpriteConfig">
+Zwraca konfigurację Sprite'ów
+</member>
+        <member name="M:Engine.Load">
+Wczytanie niezbędnych zasobów z dysku
+</member>
+        <member name="M:Engine.Get">
+Statyczna metoda, zwracająca instancję klasy
+</member>
+        <member name="T:Engine">
+Klasa typu Singleton, opisująca silnik gry zawierający w sobie m. in. renderer
+</member>
+        <member name="M:OO.op_Decrement(OO.OptionsOptions*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+dekrementacja
+</member>
+        <member name="M:OO.op_Increment(OO.OptionsOptions*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+inkrementacja
+</member>
+        <member name="T:OO.OptionsOptions">
+opcje opcji
+</member>
+        <member name="M:RS.op_Decrement(RS.Resolution*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+dekrementacja
+</member>
+        <member name="M:RS.op_Increment(RS.Resolution*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+inkrementacja
+</member>
+        <member name="T:RS.Resolution">
+Rozdzielczości
+</member>
+        <member name="M:MO.op_Decrement(MO.MenuOptions*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+dekrementacja opcji gry
+</member>
+        <member name="M:MO.op_Increment(MO.MenuOptions*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
+inkrementacja opcji gry
+</member>
+        <member name="T:MO.MenuOptions">
+Opcje menu
+</member>
+        <member name="T:GS.GameState">
+Stan gry
+</member>
+        <member name="T:FT.FieldType">
+Rodzaj pola
+</member>
+        <member name="T:PS.PlayerState">
+stan gracza
+</member>
+        <member name="T:DL.DisplayLayer">
+Warstwa do rysowania (im mniejsza wartość, tym bliżej ekranu)
+</member>
+        <member name="D:SpriteConfigPtr">
+Wskaźnik na konfigurację sprite'ów
+</member>
+        <member name="M:SpriteConfig.Insert(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,SpriteConfigData!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Wiąże konfiguraację sprite z zadaną nazwą i umieszcza ją w mapie
+</member>
+        <member name="M:SpriteConfig.Contains(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Sprawdza czy istnieje konfigurcja o zadanej nazwie
+</member>
+        <member name="M:SpriteConfig.Get(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Zwraca konfigurację sprite'a o zadanej nazwie
+</member>
+        <member name="M:SpriteConfig.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="T:SpriteConfig">
+Klasa przechowująca konfigurację wszystkich sprite'ów
+</member>
+        <member name="M:SpriteConfigData.#ctor(System.UInt32,System.UInt32,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+Domyślnny konstruktor
+</member>
+        <member name="T:SpriteConfigData">
+Struktura opisująca konfigurację sprite'ów
+</member>
+        <member name="D:RendererPtr">
+Wskaźnik na renderer
+</member>
+        <member name="M:Renderer.DrawQuad(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+Rysuje prostokąt o zadanych parametrach
+</member>
+        <member name="M:Renderer.ResetProjection">
+resetuje projekcję 
+</member>
+        <member name="M:Renderer.setProjection(System.UInt32,System.UInt32)">
+ustawia rozmiary projekcji na ekranie
+</member>
+        <member name="M:Renderer.DrawSprite(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.UInt32)">
+Wyświetla Sprite'a z zadanych współrzędnych w atlasie na podane wspórzędne na ekranie
+</member>
+        <member name="M:Renderer.LoadTexture(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Wczytuje atlas tekstur
+</member>
+        <member name="M:Renderer.getVerticalTilesOnScreenCount">
+Zwraca ilość komórek mieszczących się na ekranie w pionie
+</member>
+        <member name="M:Renderer.getHorizontalTilesOnScreenCount">
+Zwraca ilość komórek mieszczących się na ekranie w poziomie
+</member>
+        <member name="M:Renderer.setTileSize(System.Double,System.Double)">
+Ustawia rozmiar komórki w siatce
+</member>
+        <member name="M:Renderer.getTileHeigth">
+Zwraca wysokość komórki w siatce
+</member>
+        <member name="M:Renderer.getTileWidth">
+Zwraca szerokość komórki w siatce
+</member>
+        <member name="M:Renderer.#ctor">
+Domyślny konstruktor, ustawia rozmiar komórek w siatce gry
+</member>
+        <member name="M:SDL_Quit">
+This function cleans up all initialized subsystems and unloads the
+ *  dynamically linked library.  You should call it upon all exit conditions.
+
+</member>
+        <member name="M:SDL_WasInit(System.UInt32)">
+This function returns mask of the specified subsystems which have
+ *  been initialized.
+ *  If 'flags' is 0, it returns a mask of all initialized subsystems.
+
+</member>
+        <member name="M:SDL_QuitSubSystem(System.UInt32)">
+This function cleans up specific SDL subsystems 
+</member>
+        <member name="M:SDL_InitSubSystem(System.UInt32)">
+This function initializes specific SDL subsystems 
+</member>
+        <member name="M:SDL_RemoveTimer(_SDL_TimerID*)">
+Remove one of the multiple timers knowing its ID.
+Returns a boolean value indicating success.
+
+</member>
+        <member name="M:SDL_AddTimer(System.UInt32,=FUNC:System.UInt32(System.UInt32,System.Void*),System.Void*)">
+Add a new timer to the pool of timers already running.
+ *  Returns a timer ID, or NULL when an error occurs.
+
+</member>
+        <member name="T:_SDL_TimerID">
+Definition of the timer ID type 
+</member>
+        <member name="M:SDL_SetTimer(System.UInt32,=FUNC:System.UInt32(System.UInt32))">
+ Set a callback to run after the specified number of milliseconds has
+ elapsed. The callback function is passed the current timer interval
+ and returns the next timer interval.  If the returned value is the 
+ same as the one passed in, the periodic alarm continues, otherwise a
+ new alarm is scheduled.  If the callback returns 0, the periodic alarm
+ is cancelled.
+
+ To cancel a currently running timer, call SDL_SetTimer(0, NULL);
+
+ The timer callback function may run in a different thread than your
+ main code, and so shouldn't call any functions from within itself.
+
+ The maximum resolution of this timer is 10 ms, which means that if
+ you request a 16 ms timer, your callback will run approximately 20 ms
+ later on an unloaded system.  If you wanted to set a flag signaling
+ a frame update at 30 frames per second (every 33 ms), you might set a 
+ timer for 30 ms:
+   @code SDL_SetTimer((33/10)*10, flag_update); @endcode
+
+ If you use this function, you need to pass SDL_INIT_TIMER to SDL_Init().
+
+ Under UNIX, you should not use raise or use SIGALRM and this function
+ in the same program, as it is implemented using setitimer().  You also
+ should not use this function in multi-threaded applications as signals
+ to multi-threaded apps have undefined behavior in some implementations.
+
+ This function returns 0 if successful, or -1 if there was an error.
+
+</member>
+        <member name="D:SDL_TimerCallback">
+Function prototype for the timer callback function 
+</member>
+        <member name="M:SDL_Delay(System.UInt32)">
+Wait a specified number of milliseconds before returning 
+</member>
+        <member name="M:SDL_UnloadObject(System.Void*)">
+Unload a shared object from memory 
+</member>
+        <member name="M:SDL_LoadFunction(System.Void*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+Given an object handle, this function looks up the address of the
+named function in the shared object and returns it.  This address
+is no longer valid after calling SDL_UnloadObject().
+
+</member>
+        <member name="M:SDL_EventState(System.Byte,System.Int32)">
+@name Event State 
+This function allows you to set the state of processing certain events.
+If 'state' is set to SDL_IGNORE, that event will be automatically dropped
+from the event queue and will not event be filtered.
+If 'state' is set to SDL_ENABLE, that event will be processed normally.
+If 'state' is set to SDL_QUERY, SDL_EventState() will return the 
+current processing state of the specified event.
+
+</member>
+        <member name="M:SDL_GetEventFilter">
+Return the current event filter - can be used to "chain" filters.
+If there is no event filter set, this function returns NULL.
+
+</member>
+        <member name="M:SDL_SetEventFilter(=FUNC:System.Int32(SDL_Event!System.Runtime.CompilerServices.IsConst*))">
+  This function sets up a filter to process all events before they
+  change internal state and are posted to the internal event queue.
+
+  The filter is protypted as:
+      @code typedef int (SDLCALL *SDL_EventFilter)(const SDL_Event *event); @endcode
+
+ If the filter returns 1, then the event will be added to the internal queue.
+ If it returns 0, then the event will be dropped from the queue, but the 
+ internal state will still be updated.  This allows selective filtering of
+ dynamically arriving events.
+
+ @warning  Be very careful of what you do in the event filter function, as 
+           it may run in a different thread!
+
+ There is one caveat when dealing with the SDL_QUITEVENT event type.  The
+ event filter is only called when the window manager desires to close the
+ application window.  If the event filter returns 1, then the window will
+ be closed, otherwise the window will remain open if possible.
+ If the quit event is generated by an interrupt signal, it will bypass the
+ internal queue and be delivered to the application at the next event poll.
+
+</member>
+        <member name="D:SDL_EventFilter">
+@name Event Filtering 
+</member>
+        <member name="M:SDL_PushEvent(SDL_Event*)">
+Add an event to the event queue.
+ *  This function returns 0 on success, or -1 if the event queue was full
+ *  or there was some other error.
+
+</member>
+        <member name="M:SDL_WaitEvent(SDL_Event*)">
+Waits indefinitely for the next available event, returning 1, or 0 if there
+ *  was an error while waiting for events.  If 'event' is not NULL, the next
+ *  event is removed from the queue and stored in that area.
+
+</member>
+        <member name="M:SDL_PollEvent(SDL_Event*)">
+Polls for currently pending events, and returns 1 if there are any pending
+ *  events, or 0 if there are none available.  If 'event' is not NULL, the next
+ *  event is removed from the queue and stored in that area.
+
+</member>
+        <member name="M:SDL_PeepEvents(SDL_Event*,System.Int32,SDL_eventaction,System.UInt32)">
+  Checks the event queue for messages and optionally returns them.
+
+  If 'action' is SDL_ADDEVENT, up to 'numevents' events will be added to
+  the back of the event queue.
+  If 'action' is SDL_PEEKEVENT, up to 'numevents' events at the front
+  of the event queue, matching 'mask', will be returned and will not
+  be removed from the queue.
+  If 'action' is SDL_GETEVENT, up to 'numevents' events at the front 
+  of the event queue, matching 'mask', will be returned and will be
+  removed from the queue.
+
+  @return
+  This function returns the number of events actually stored, or -1
+  if there was an error.
+
+  This function is thread-safe.
+
+</member>
+        <member name="M:SDL_PumpEvents">
+Pumps the event loop, gathering events from the input devices.
+ *  This function updates the event queue and internal input device state.
+ *  This should only be run in the thread that sets the video mode.
+
+</member>
+        <member name="T:SDL_Event">
+General event structure 
+</member>
+        <member name="T:SDL_SysWMmsg">
+If you want to use this event, you should include SDL_syswm.h 
+</member>
+        <member name="T:SDL_UserEvent">
+A user-defined event type 
+</member>
+        <member name="T:SDL_QuitEvent">
+The "quit requested" event 
+</member>
+        <member name="T:SDL_ExposeEvent">
+The "screen redraw" event 
+</member>
+        <member name="T:SDL_ResizeEvent">
+The "window resized" event
+ *  When you get this event, you are responsible for setting a new video
+ *  mode with the new width and height.
+
+</member>
+        <member name="T:SDL_JoyButtonEvent">
+Joystick button event structure 
+</member>
+        <member name="T:SDL_JoyHatEvent">
+Joystick hat position change event structure 
+</member>
+        <member name="T:SDL_JoyBallEvent">
+Joystick trackball motion event structure 
+</member>
+        <member name="T:SDL_JoyAxisEvent">
+Joystick axis motion event structure 
+</member>
+        <member name="T:SDL_MouseButtonEvent">
+Mouse button event structure 
+</member>
+        <member name="T:SDL_MouseMotionEvent">
+Mouse motion event structure 
+</member>
+        <member name="T:SDL_KeyboardEvent">
+Keyboard event structure 
+</member>
+        <member name="T:SDL_ActiveEvent">
+Application visibility event structure 
+</member>
+        <member name="F:SDL_NUMEVENTS">
+This last event is only for bounding internal arrays
+	*  It is the number of bits in the event mask datatype -- Uint32
+
+</member>
+        <member name="F:SDL_USEREVENT">
+Events SDL_USEREVENT through SDL_MAXEVENTS-1 are for your use 
+</member>
+        <member name="M:SDL_JoystickClose(_SDL_Joystick*)">
+Close a joystick previously opened with SDL_JoystickOpen()
+
+</member>
+        <member name="M:SDL_JoystickGetButton(_SDL_Joystick*,System.Int32)">
+ Get the current state of a button on a joystick
+
+ @param[in] button The button indices start at index 0.
+
+</member>
+        <member name="M:SDL_JoystickGetBall(_SDL_Joystick*,System.Int32,System.Int32*,System.Int32*)">
+ Get the ball axis change since the last poll
+
+ @param[in] ball The ball indices start at index 0.
+
+ @return This returns 0, or -1 if you passed it invalid parameters.
+
+</member>
+        <member name="M:SDL_JoystickGetHat(_SDL_Joystick*,System.Int32)">
+@name Hat Positions
+The return value of SDL_JoystickGetHat() is one of the following positions:
+
+  Get the current state of a POV hat on a joystick
+
+  @param[in] hat The hat indices start at index 0.
+
+</member>
+        <member name="M:SDL_JoystickGetAxis(_SDL_Joystick*,System.Int32)">
+ Get the current state of an axis control on a joystick
+
+ @param[in] axis The axis indices start at index 0.
+
+ @return The state is a value ranging from -32768 to 32767.
+
+</member>
+        <member name="M:SDL_JoystickEventState(System.Int32)">
+ Enable/disable joystick event polling.
+
+ If joystick events are disabled, you must call SDL_JoystickUpdate()
+ yourself and check the state of the joystick when you want joystick
+ information.
+
+ @param[in] state The state can be one of SDL_QUERY, SDL_ENABLE or SDL_IGNORE.
+
+</member>
+        <member name="M:SDL_JoystickUpdate">
+ Update the current state of the open joysticks.
+
+ This is called automatically by the event loop if any joystick
+ events are enabled.
+
+</member>
+        <member name="M:SDL_JoystickNumButtons(_SDL_Joystick*)">
+Get the number of buttons on a joystick
+
+</member>
+        <member name="M:SDL_JoystickNumHats(_SDL_Joystick*)">
+Get the number of POV hats on a joystick
+
+</member>
+        <member name="M:SDL_JoystickNumBalls(_SDL_Joystick*)">
+ Get the number of trackballs on a joystick
+
+ Joystick trackballs have only relative motion events associated
+ with them and their state cannot be polled.
+
+</member>
+        <member name="M:SDL_JoystickNumAxes(_SDL_Joystick*)">
+Get the number of general axis controls on a joystick
+
+</member>
+        <member name="M:SDL_JoystickIndex(_SDL_Joystick*)">
+Get the device index of an opened joystick.
+
+</member>
+        <member name="M:SDL_JoystickOpened(System.Int32)">
+Returns 1 if the joystick has been opened, or 0 if it has not.
+
+</member>
+        <member name="M:SDL_JoystickOpen(System.Int32)">
+ Open a joystick for use.
+
+ @param[in] device_index
+ The index passed as an argument refers to
+ the N'th joystick on the system.  This index is the value which will
+ identify this joystick in future joystick events.
+
+ @return This function returns a joystick identifier, or NULL if an error occurred.
+
+</member>
+        <member name="M:SDL_JoystickName(System.Int32)">
+ Get the implementation dependent name of a joystick.
+
+ This can be called before any joysticks are opened.
+ If no name can be found, this function returns NULL.
+
+</member>
+        <member name="M:SDL_NumJoysticks">
+Count the number of joysticks attached to the system
+
+</member>
+        <member name="M:SDL_ShowCursor(System.Int32)">
+Toggle whether or not the cursor is shown on the screen.
+The cursor start off displayed, but can be turned off.
+SDL_ShowCursor() returns 1 if the cursor was being displayed
+before the call, or 0 if it was not.  You can query the current
+state by passing a 'toggle' value of -1.
+
+</member>
+        <member name="M:SDL_FreeCursor(SDL_Cursor*)">
+Deallocates a cursor created with SDL_CreateCursor().
+
+</member>
+        <member name="M:SDL_GetCursor">
+Returns the currently active cursor.
+
+</member>
+        <member name="M:SDL_SetCursor(SDL_Cursor*)">
+Set the currently active cursor to the specified one.
+If the cursor is currently visible, the change will be immediately 
+represented on the display.
+
+</member>
+        <member name="M:SDL_CreateCursor(System.Byte*,System.Byte*,System.Int32,System.Int32,System.Int32,System.Int32)">
+ Create a cursor using the specified data and mask (in MSB format).
+ The cursor width must be a multiple of 8 bits.
+
+ The cursor is created in black and white according to the following:
+ data  mask    resulting pixel on screen
+  0     1       White
+  1     1       Black
+  0     0       Transparent
+  1     0       Inverted color if possible, black if not.
+
+ Cursors created with this function must be freed with SDL_FreeCursor().
+
+</member>
+        <member name="M:SDL_WarpMouse(System.UInt16,System.UInt16)">
+Set the position of the mouse cursor (generates a mouse motion event)
+
+</member>
+        <member name="M:SDL_GetRelativeMouseState(System.Int32*,System.Int32*)">
+Retrieve the current state of the mouse.
+The current button state is returned as a button bitmask, which can
+be tested using the SDL_BUTTON(X) macros, and x and y are set to the
+mouse deltas since the last call to SDL_GetRelativeMouseState().
+
+</member>
+        <member name="M:SDL_GetMouseState(System.Int32*,System.Int32*)">
+Retrieve the current state of the mouse.
+The current button state is returned as a button bitmask, which can
+be tested using the SDL_BUTTON(X) macros, and x and y are set to the
+current mouse cursor position.  You can pass NULL for either x or y.
+
+</member>
+        <member name="M:SDL_SoftStretch(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)">
+@internal Not in public API at the moment - do not use! 
+</member>
+        <member name="M:SDL_WM_GrabInput(SDL_GrabMode)">
+ This function allows you to set and query the input grab state of
+ the application.  It returns the new input grab state.
+
+ Grabbing means that the mouse is confined to the application window,
+ and nearly all keyboard input is passed directly to the application,
+ and not interpreted by a window manager, if any.
+
+</member>
+        <member name="M:SDL_WM_ToggleFullScreen(SDL_Surface*)">
+ Toggle fullscreen mode without changing the contents of the screen.
+ If the display surface does not require locking before accessing
+ the pixel information, then the memory pointers will not change.
+
+ If this function was able to toggle fullscreen mode (change from 
+ running in a window to fullscreen, or vice-versa), it will return 1.
+ If it is not implemented, or fails, it returns 0.
+
+ The next call to SDL_SetVideoMode() will set the mode fullscreen
+ attribute based on the flags parameter - if SDL_FULLSCREEN is not
+ set, then the display will be windowed by default where supported.
+
+ This is currently only implemented in the X11 video driver.
+
+</member>
+        <member name="M:SDL_WM_IconifyWindow">
+This function iconifies the window, and returns 1 if it succeeded.
+If the function succeeds, it generates an SDL_APPACTIVE loss event.
+This function is a noop and returns 0 in non-windowed environments.
+
+</member>
+        <member name="M:SDL_WM_SetIcon(SDL_Surface*,System.Byte*)">
+Sets the icon for the display window.
+This function must be called before the first call to SDL_SetVideoMode().
+It takes an icon surface, and a mask in MSB format.
+If 'mask' is NULL, the entire icon surface will be used as the icon.
+
+</member>
+        <member name="M:SDL_WM_GetCaption(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte**,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte**)">
+Gets the title and icon text of the display window (UTF-8 encoded)
+
+</member>
+        <member name="M:SDL_WM_SetCaption(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+@name Window Manager Functions                                           
+These functions allow interaction with the window manager, if any.       
+Sets the title and icon text of the display window (UTF-8 encoded)
+
+</member>
+        <member name="M:SDL_GL_UpdateRects(System.Int32,SDL_Rect*)">
+@name OpenGL Internal Functions
+ * Internal functions that should not be called unless you have read
+ * and understood the source code for these functions.
+
+</member>
+        <member name="M:SDL_GL_SwapBuffers">
+Swap the OpenGL buffers, if double-buffering is supported.
+
+</member>
+        <member name="M:SDL_GL_GetAttribute(SDL_GLattr,System.Int32*)">
+ Get an attribute of the OpenGL subsystem from the windowing
+ interface, such as glX. This is of course different from getting
+ the values from SDL's internal OpenGL subsystem, which only
+ stores the values you request before initialization.
+
+ Developers should track the values they pass into SDL_GL_SetAttribute
+ themselves if they want to retrieve these values.
+
+</member>
+        <member name="M:SDL_GL_SetAttribute(SDL_GLattr,System.Int32)">
+Set an attribute of the OpenGL subsystem before intialization.
+
+</member>
+        <member name="M:SDL_GL_GetProcAddress(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+Get the address of a GL function
+
+</member>
+        <member name="M:SDL_GL_LoadLibrary(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+@name OpenGL support functions.                                          
+ Dynamically load an OpenGL library, or the default one if path is NULL
+
+ If you do this, you need to retrieve all of the GL functions used in
+ your program from the dynamic library using SDL_GL_GetProcAddress().
+
+</member>
+        <member name="M:SDL_FreeYUVOverlay(SDL_Overlay*)">
+Free a video overlay 
+</member>
+        <member name="M:SDL_DisplayYUVOverlay(SDL_Overlay*,SDL_Rect*)">
+Blit a video overlay to the display surface.
+ *  The contents of the video surface underneath the blit destination are
+ *  not defined.  
+ *  The width and height of the destination rectangle may be different from
+ *  that of the overlay, but currently only 2x scaling is supported.
+
+</member>
+        <member name="M:SDL_LockYUVOverlay(SDL_Overlay*)">
+Lock an overlay for direct access, and unlock it when you are done 
+</member>
+        <member name="M:SDL_CreateYUVOverlay(System.Int32,System.Int32,System.UInt32,SDL_Surface*)">
+@name YUV video surface overlay functions                                
+This function creates a video output overlay
+ *  Calling the returned surface an overlay is something of a misnomer because
+ *  the contents of the display surface underneath the area where the overlay
+ *  is shown is undefined - it may be overwritten with the converted YUV data.
+
+</member>
+        <member name="M:SDL_DisplayFormatAlpha(SDL_Surface*)">
+ This function takes a surface and copies it to a new surface of the
+ pixel format and colors of the video framebuffer (if possible),
+ suitable for fast alpha blitting onto the display surface.
+ The new surface will always have an alpha channel.
+
+ If you want to take advantage of hardware colorkey or alpha blit
+ acceleration, you should set the colorkey and alpha value before
+ calling this function.
+
+ If the conversion fails or runs out of memory, it returns NULL
+
+</member>
+        <member name="M:SDL_DisplayFormat(SDL_Surface*)">
+ This function takes a surface and copies it to a new surface of the
+ pixel format and colors of the video framebuffer, suitable for fast
+ blitting onto the display surface.  It calls SDL_ConvertSurface()
+
+ If you want to take advantage of hardware colorkey or alpha blit
+ acceleration, you should set the colorkey and alpha value before
+ calling this function.
+
+ If the conversion fails or runs out of memory, it returns NULL
+
+</member>
+        <member name="M:SDL_FillRect(SDL_Surface*,SDL_Rect*,System.UInt32)">
+This function performs a fast fill of the given rectangle with 'color'
+The given rectangle is clipped to the destination surface clip area
+and the final fill rectangle is saved in the passed in pointer.
+If 'dstrect' is NULL, the whole surface will be filled with 'color'
+The color should be a pixel of the format used by the surface, and 
+can be generated by the SDL_MapRGB() function.
+This function returns 0 on success, or -1 on error.
+
+</member>
+        <member name="M:SDL_LowerBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)">
+This is a semi-private blit function and it performs low-level surface
+ *  blitting only.
+
+</member>
+        <member name="M:SDL_ConvertSurface(SDL_Surface*,SDL_PixelFormat*,System.UInt32)">
+ Creates a new surface of the specified format, and then copies and maps 
+ the given surface to it so the blit of the converted surface will be as 
+ fast as possible.  If this function fails, it returns NULL.
+
+ The 'flags' parameter is passed to SDL_CreateRGBSurface() and has those 
+ semantics.  You can also pass SDL_RLEACCEL in the flags parameter and
+ SDL will try to RLE accelerate colorkey and alpha blits in the resulting
+ surface.
+
+ This function is used internally by SDL_DisplayFormat().
+
+</member>
+        <member name="M:SDL_GetClipRect(SDL_Surface*,SDL_Rect*)">
+Gets the clipping rectangle for the destination surface in a blit.
+'rect' must be a pointer to a valid rectangle which will be filled
+with the correct values.
+
+</member>
+        <member name="M:SDL_SetClipRect(SDL_Surface*,SDL_Rect!System.Runtime.CompilerServices.IsConst*)">
+ Sets the clipping rectangle for the destination surface in a blit.
+
+ If the clip rectangle is NULL, clipping will be disabled.
+ If the clip rectangle doesn't intersect the surface, the function will
+ return SDL_FALSE and blits will be completely clipped.  Otherwise the
+ function returns SDL_TRUE and blits to the surface will be clipped to
+ the intersection of the surface area and the clipping rectangle.
+
+ Note that blits are automatically clipped to the edges of the source
+ and destination surfaces.
+
+</member>
+        <member name="M:SDL_SetAlpha(SDL_Surface*,System.UInt32,System.Byte)">
+ This function sets the alpha value for the entire surface, as opposed to
+ using the alpha component of each pixel. This value measures the range
+ of transparency of the surface, 0 being completely transparent to 255
+ being completely opaque. An 'alpha' value of 255 causes blits to be
+ opaque, the source pixels copied to the destination (the default). Note
+ that per-surface alpha can be combined with colorkey transparency.
+
+ If 'flag' is 0, alpha blending is disabled for the surface.
+ If 'flag' is SDL_SRCALPHA, alpha blending is enabled for the surface.
+ OR:ing the flag with SDL_RLEACCEL requests RLE acceleration for the
+ surface; if SDL_RLEACCEL is not specified, the RLE accel will be removed.
+
+ The 'alpha' parameter is ignored for surfaces that have an alpha channel.
+
+</member>
+        <member name="M:SDL_SetColorKey(SDL_Surface*,System.UInt32,System.UInt32)">
+Convenience macro -- save a surface to a file 
+Sets the color key (transparent pixel) in a blittable surface.
+If 'flag' is SDL_SRCCOLORKEY (optionally OR'd with SDL_RLEACCEL), 
+'key' will be the transparent pixel in the source image of a blit.
+SDL_RLEACCEL requests RLE acceleration for the surface if present,
+and removes RLE acceleration if absent.
+If 'flag' is 0, this function clears any current color key.
+This function returns 0, or -1 if there was an error.
+
+</member>
+        <member name="M:SDL_SaveBMP_RW(SDL_Surface*,SDL_RWops*,System.Int32)">
+Convenience macro -- load a surface from a file 
+Save a surface to a seekable SDL data source (memory or file.)
+If 'freedst' is non-zero, the source will be closed after being written.
+Returns 0 if successful or -1 if there was an error.
+
+</member>
+        <member name="M:SDL_LoadBMP_RW(SDL_RWops*,System.Int32)">
+Load a surface from a seekable SDL data source (memory or file.)
+If 'freesrc' is non-zero, the source will be closed after being read.
+Returns the new surface, or NULL if there was an error.
+The new surface should be freed with SDL_FreeSurface().
+
+</member>
+        <member name="M:SDL_LockSurface(SDL_Surface*)">
+ SDL_LockSurface() sets up a surface for directly accessing the pixels.
+ Between calls to SDL_LockSurface()/SDL_UnlockSurface(), you can write
+ to and read from 'surface-&gt;pixels', using the pixel format stored in 
+ 'surface-&gt;format'.  Once you are done accessing the surface, you should 
+ use SDL_UnlockSurface() to release it.
+
+ Not all surfaces require locking.  If SDL_MUSTLOCK(surface) evaluates
+ to 0, then you can read and write to the surface at any time, and the
+ pixel format of the surface will not change.  In particular, if the
+ SDL_HWSURFACE flag is not given when calling SDL_SetVideoMode(), you
+ will not need to lock the display surface before accessing it.
+ 
+ No operating system or library calls should be made between lock/unlock
+ pairs, as critical system locks may be held during this time.
+
+ SDL_LockSurface() returns 0, or -1 if the surface couldn't be locked.
+
+</member>
+        <member name="M:SDL_CreateRGBSurfaceFrom(System.Void*,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+@sa SDL_CreateRGBSurface 
+</member>
+        <member name="M:SDL_CreateRGBSurface(System.UInt32,System.Int32,System.Int32,System.Int32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+@sa SDL_CreateRGBSurface 
+ Allocate and free an RGB surface (must be called after SDL_SetVideoMode)
+ If the depth is 4 or 8 bits, an empty palette is allocated for the surface.
+ If the depth is greater than 8 bits, the pixel format is set using the
+ flags '[RGB]mask'.
+ If the function runs out of memory, it will return NULL.
+
+ The 'flags' tell what kind of surface to create.
+ SDL_SWSURFACE means that the surface should be created in system memory.
+ SDL_HWSURFACE means that the surface should be created in video memory,
+ with the same format as the display surface.  This is useful for surfaces
+ that will not change much, to take advantage of hardware acceleration
+ when being blitted to the display surface.
+ SDL_ASYNCBLIT means that SDL will try to perform asynchronous blits with
+ this surface, but you must always lock it before accessing the pixels.
+ SDL will wait for current blits to finish before returning from the lock.
+ SDL_SRCCOLORKEY indicates that the surface will be used for colorkey blits.
+ If the hardware supports acceleration of colorkey blits between
+ two surfaces in video memory, SDL will try to place the surface in
+ video memory. If this isn't possible or if there is no hardware
+ acceleration available, the surface will be placed in system memory.
+ SDL_SRCALPHA means that the surface will be used for alpha blits and 
+ if the hardware supports hardware acceleration of alpha blits between
+ two surfaces in video memory, to place the surface in video memory
+ if possible, otherwise it will be placed in system memory.
+ If the surface is created in video memory, blits will be _much_ faster,
+ but the surface format must be identical to the video surface format,
+ and the only way to access the pixels member of the surface is to use
+ the SDL_LockSurface() and SDL_UnlockSurface() calls.
+ If the requested surface actually resides in video memory, SDL_HWSURFACE
+ will be set in the flags member of the returned surface.  If for some
+ reason the surface could not be placed in video memory, it will not have
+ the SDL_HWSURFACE flag set, and will be created in system memory instead.
+
+</member>
+        <member name="M:SDL_GetRGBA(System.UInt32,SDL_PixelFormat!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsConst,System.Byte*,System.Byte*,System.Byte*,System.Byte*)">
+Maps a pixel value into the RGBA components for a given pixel format
+
+</member>
+        <member name="M:SDL_GetRGB(System.UInt32,SDL_PixelFormat!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsConst,System.Byte*,System.Byte*,System.Byte*)">
+Maps a pixel value into the RGB components for a given pixel format
+
+</member>
+        <member name="M:SDL_MapRGBA(SDL_PixelFormat!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst)">
+Maps an RGBA quadruple to a pixel value for a given pixel format
+
+</member>
+        <member name="M:SDL_MapRGB(SDL_PixelFormat!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst,System.Byte!System.Runtime.CompilerServices.IsConst)">
+Maps an RGB triple to an opaque pixel value for a given pixel format
+
+</member>
+        <member name="M:SDL_SetPalette(SDL_Surface*,System.Int32,SDL_Color*,System.Int32,System.Int32)">
+ Sets a portion of the colormap for a given 8-bit surface.
+ 'flags' is one or both of:
+ SDL_LOGPAL  -- set logical palette, which controls how blits are mapped
+                to/from the surface,
+ SDL_PHYSPAL -- set physical palette, which controls how pixels look on
+                the screen
+ Only screens have physical palettes. Separate change of physical/logical
+ palettes is only possible if the screen has SDL_HWPALETTE set.
+
+ The return value is 1 if all colours could be set as requested, and 0
+ otherwise.
+
+ SDL_SetColors() is equivalent to calling this function with
+     flags = (SDL_LOGPAL|SDL_PHYSPAL).
+
+</member>
+        <member name="M:SDL_SetColors(SDL_Surface*,SDL_Color*,System.Int32,System.Int32)">
+ Sets a portion of the colormap for the given 8-bit surface.  If 'surface'
+ is not a palettized surface, this function does nothing, returning 0.
+ If all of the colors were set as passed to SDL_SetColors(), it will
+ return 1.  If not all the color entries were set exactly as given,
+ it will return 0, and you should look at the surface palette to
+ determine the actual color palette.
+
+ When 'surface' is the surface associated with the current display, the
+ display colormap will be updated with the requested colors.  If 
+ SDL_HWPALETTE was set in SDL_SetVideoMode() flags, SDL_SetColors()
+ will always return 1, and the palette is guaranteed to be set the way
+ you desire, even if the window colormap has to be warped or run under
+ emulation.
+
+</member>
+        <member name="M:SDL_GetGammaRamp(System.UInt16*,System.UInt16*,System.UInt16*)">
+Retrieve the current values of the gamma translation tables.
+
+You must pass in valid pointers to arrays of 256 16-bit quantities.
+Any of the pointers may be NULL to ignore that channel.
+If the call succeeds, it will return 0.  If the display driver or
+hardware does not support gamma translation, or otherwise fails,
+this function will return -1.
+
+</member>
+        <member name="M:SDL_SetGammaRamp(System.UInt16!System.Runtime.CompilerServices.IsConst*,System.UInt16!System.Runtime.CompilerServices.IsConst*,System.UInt16!System.Runtime.CompilerServices.IsConst*)">
+Set the gamma translation table for the red, green, and blue channels
+of the video hardware.  Each table is an array of 256 16-bit quantities,
+representing a mapping between the input and output for that channel.
+The input is the index into the array, and the output is the 16-bit
+gamma value at that index, scaled to the output color precision.
+
+You may pass NULL for any of the channels to leave it unchanged.
+If the call succeeds, it will return 0.  If the display driver or
+hardware does not support gamma translation, or otherwise fails,
+this function will return -1.
+
+</member>
+        <member name="M:SDL_SetGamma(System.Single,System.Single,System.Single)">
+Set the gamma correction for each of the color channels.
+The gamma values range (approximately) between 0.1 and 10.0
+
+If this function isn't supported directly by the hardware, it will
+be emulated using gamma ramps, if available.  If successful, this
+function returns 0, otherwise it returns -1.
+
+</member>
+        <member name="M:SDL_Flip(SDL_Surface*)">
+On hardware that supports double-buffering, this function sets up a flip
+and returns.  The hardware will wait for vertical retrace, and then swap
+video buffers before the next video surface blit or lock will return.
+On hardware that doesn not support double-buffering, this is equivalent
+to calling SDL_UpdateRect(screen, 0, 0, 0, 0);
+The SDL_DOUBLEBUF flag must have been passed to SDL_SetVideoMode() when
+setting the video mode for this function to perform hardware flipping.
+This function returns 0 if successful, or -1 if there was an error.
+
+</member>
+        <member name="M:SDL_UpdateRect(SDL_Surface*,System.Int32,System.Int32,System.UInt32,System.UInt32)">
+If 'x', 'y', 'w' and 'h' are all 0, SDL_UpdateRect will update the entire
+screen.
+
+</member>
+        <member name="M:SDL_UpdateRects(SDL_Surface*,System.Int32,SDL_Rect*)">
+@name SDL_Update Functions
+ * These functions should not be called while 'screen' is locked.
+
+Makes sure the given list of rectangles is updated on the given screen.
+
+</member>
+        <member name="M:SDL_SetVideoMode(System.Int32,System.Int32,System.Int32,System.UInt32)">
+ Set up a video mode with the specified width, height and bits-per-pixel.
+
+ If 'bpp' is 0, it is treated as the current display bits per pixel.
+
+ If SDL_ANYFORMAT is set in 'flags', the SDL library will try to set the
+ requested bits-per-pixel, but will return whatever video pixel format is
+ available.  The default is to emulate the requested pixel format if it
+ is not natively available.
+
+ If SDL_HWSURFACE is set in 'flags', the video surface will be placed in
+ video memory, if possible, and you may have to call SDL_LockSurface()
+ in order to access the raw framebuffer.  Otherwise, the video surface
+ will be created in system memory.
+
+ If SDL_ASYNCBLIT is set in 'flags', SDL will try to perform rectangle
+ updates asynchronously, but you must always lock before accessing pixels.
+ SDL will wait for updates to complete before returning from the lock.
+
+ If SDL_HWPALETTE is set in 'flags', the SDL library will guarantee
+ that the colors set by SDL_SetColors() will be the colors you get.
+ Otherwise, in 8-bit mode, SDL_SetColors() may not be able to set all
+ of the colors exactly the way they are requested, and you should look
+ at the video surface structure to determine the actual palette.
+ If SDL cannot guarantee that the colors you request can be set, 
+ i.e. if the colormap is shared, then the video surface may be created
+ under emulation in system memory, overriding the SDL_HWSURFACE flag.
+
+ If SDL_FULLSCREEN is set in 'flags', the SDL library will try to set
+ a fullscreen video mode.  The default is to create a windowed mode
+ if the current graphics system has a window manager.
+ If the SDL library is able to set a fullscreen video mode, this flag 
+ will be set in the surface that is returned.
+
+ If SDL_DOUBLEBUF is set in 'flags', the SDL library will try to set up
+ two surfaces in video memory and swap between them when you call 
+ SDL_Flip().  This is usually slower than the normal single-buffering
+ scheme, but prevents "tearing" artifacts caused by modifying video 
+ memory while the monitor is refreshing.  It should only be used by 
+ applications that redraw the entire screen on every update.
+
+ If SDL_RESIZABLE is set in 'flags', the SDL library will allow the
+ window manager, if any, to resize the window at runtime.  When this
+ occurs, SDL will send a SDL_VIDEORESIZE event to you application,
+ and you must respond to the event by re-calling SDL_SetVideoMode()
+ with the requested size (or another size that suits the application).
+
+ If SDL_NOFRAME is set in 'flags', the SDL library will create a window
+ without any title bar or frame decoration.  Fullscreen video modes have
+ this flag set automatically.
+
+ This function returns the video framebuffer surface, or NULL if it fails.
+
+ If you rely on functionality provided by certain video flags, check the
+ flags of the returned surface to make sure that functionality is available.
+ SDL will fall back to reduced functionality if the exact flags you wanted
+ are not available.
+
+</member>
+        <member name="M:SDL_ListModes(SDL_PixelFormat*,System.UInt32)">
+ Return a pointer to an array of available screen dimensions for the
+ given format and video flags, sorted largest to smallest.  Returns 
+ NULL if there are no dimensions available for a particular format, 
+ or (SDL_Rect **)-1 if any dimension is okay for the given format.
+
+ If 'format' is NULL, the mode list will be for the format given 
+ by SDL_GetVideoInfo()-&gt;vfmt
+
+</member>
+        <member name="M:SDL_VideoModeOK(System.Int32,System.Int32,System.Int32,System.UInt32)">
+ Check to see if a particular video mode is supported.
+ It returns 0 if the requested mode is not supported under any bit depth,
+ or returns the bits-per-pixel of the closest available mode with the
+ given width and height.  If this bits-per-pixel is different from the
+ one used when setting the video mode, SDL_SetVideoMode() will succeed,
+ but will emulate the requested bits-per-pixel with a shadow surface.
+
+ The arguments to SDL_VideoModeOK() are the same ones you would pass to
+ SDL_SetVideoMode()
+
+</member>
+        <member name="M:SDL_GetVideoInfo">
+This function returns a read-only pointer to information about the
+video hardware.  If this is called before SDL_SetVideoMode(), the 'vfmt'
+member of the returned structure will contain the pixel format of the
+"best" video mode.
+
+</member>
+        <member name="M:SDL_GetVideoSurface">
+This function returns a pointer to the current display surface.
+If SDL is doing format conversion on the display surface, this
+function returns the publicly visible surface, not the real video
+surface.
+
+</member>
+        <member name="M:SDL_VideoDriverName(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)">
+This function fills the given character buffer with the name of the
+video driver, and returns a pointer to it if the video driver has
+been initialized.  It returns NULL if no driver has been initialized.
+
+</member>
+        <member name="M:SDL_VideoInit(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,System.UInt32)">
+@name flags for SDL_SetPalette() 
+@name Video Init and Quit
+These functions are used internally, and should not be used unless you
+have a specific need to specify the video driver you want to use.
+You should normally use SDL_Init() or SDL_InitSubSystem().
+
+ Initializes the video subsystem. Sets up a connection
+ to the window manager, etc, and determines the current video mode and
+ pixel format, but does not initialize a window or graphics mode.
+ Note that event handling is activated by this routine.
+
+ If you use both sound and video in your application, you need to call
+ SDL_Init() before opening the sound device, otherwise under Win32 DirectX,
+ you won't be able to set full-screen display modes.
+
+</member>
+        <member name="F:SDL_Overlay.hw_overlay">
+@name Special flags 
+</member>
+        <member name="T:private_yuvhwfuncs">
+@name Hardware-specific surface info 
+</member>
+        <member name="T:SDL_Overlay">
+@name Overlay Formats
+ *  The most common video overlay formats.
+ *  For an explanation of these pixel formats, see:
+ *	http://www.webartz.com/fourcc/indexyuv.htm
+ *
+ *  For information on the relationship between color spaces, see:
+ *  http://www.neuro.sfc.keio.ac.jp/~aly/polygon/info/color-space-faq.html
+
+The YUV hardware video overlay 
+</member>
+        <member name="T:SDL_VideoInfo">
+Useful for determining the video hardware capabilities 
+</member>
+        <member name="D:SDL_blit">
+@name SDL_Surface Flags
+ *  These are the currently supported flags for the SDL_surface
+
+Available for SDL_CreateRGBSurface() or SDL_SetVideoMode() 
+Available for SDL_SetVideoMode() 
+Used internally (read-only) 
+Evaluates to true if the surface needs to be locked before access 
+typedef for private surface blitting functions 
+</member>
+        <member name="F:SDL_Surface.refcount">
+Reference count -- used when freeing surface 
+</member>
+        <member name="F:SDL_Surface.format_version">
+format version, bumped at every change to invalidate blit maps 
+</member>
+        <member name="T:SDL_BlitMap">
+info for fast blit mapping to other surfaces 
+</member>
+        <member name="F:SDL_Surface.locked">
+Allow recursive locks 
+</member>
+        <member name="F:SDL_Surface.clip_rect">
+clipping information 
+</member>
+        <member name="T:private_hwdata">
+Hardware-specific surface info 
+</member>
+        <member name="T:SDL_Surface">
+This structure should be treated as read-only, except for 'pixels',
+ *  which, if not NULL, contains the raw pixel data for the surface.
+
+</member>
+        <member name="F:SDL_PixelFormat.alpha">
+Alpha value information (per-surface alpha) 
+</member>
+        <member name="F:SDL_PixelFormat.colorkey">
+RGB color key information 
+</member>
+        <member name="T:SDL_PixelFormat">
+Everything in the pixel format structure is read-only 
+</member>
+        <member name="M:SDL_GetKeyName(SDLKey)">
+Get the name of an SDL virtual keysym
+
+</member>
+        <member name="M:SDL_SetModState(SDLMod)">
+Set the current key modifier state.
+This does not change the keyboard state, only the key modifier flags.
+
+</member>
+        <member name="M:SDL_GetModState">
+Get the current key modifier state
+
+</member>
+        <member name="M:SDL_EnableKeyRepeat(System.Int32,System.Int32)">
+ Enable/Disable keyboard repeat.  Keyboard repeat defaults to off.
+
+  @param[in] delay
+  'delay' is the initial delay in ms between the time when a key is
+  pressed, and keyboard repeat begins.
+
+  @param[in] interval
+  'interval' is the time in ms between keyboard repeat events.
+
+  If 'delay' is set to 0, keyboard repeat is disabled.
+
+</member>
+        <member name="M:SDL_EnableUNICODE(System.Int32)">
+This is the mask which refers to all hotkey bindings 
+ Enable/Disable UNICODE translation of keyboard input.
+
+ This translation has some overhead, so translation defaults off.
+
+ @param[in] enable
+ If 'enable' is 1, translation is enabled.
+ If 'enable' is 0, translation is disabled.
+ If 'enable' is -1, the translation state is not changed.
+
+ @return It returns the previous state of keyboard translation.
+
+</member>
+        <member name="F:SDLK_HELP">
+@name Miscellaneous function keys 
+</member>
+        <member name="F:SDLK_NUMLOCK">
+@name Key state modifier keys 
+</member>
+        <member name="F:SDLK_F1">
+@name Function keys 
+</member>
+        <member name="F:SDLK_UP">
+@name Arrows + Home/End pad 
+</member>
+        <member name="F:SDLK_KP0">
+@name Numeric keypad 
+</member>
+        <member name="F:SDLK_WORLD_0">
+@name International keyboard syms 
+</member>
+        <member name="F:SDLK_UNKNOWN">
+@name ASCII mapped keysyms
+         *  The keyboard syms have been cleverly chosen to map to ASCII
+
+</member>
+        <member name="M:SDL_HasAltiVec">
+This function returns true if the CPU has AltiVec features 
+</member>
+        <member name="M:SDL_HasSSE2">
+This function returns true if the CPU has SSE2 features 
+</member>
+        <member name="M:SDL_HasSSE">
+This function returns true if the CPU has SSE features 
+</member>
+        <member name="M:SDL_Has3DNowExt">
+This function returns true if the CPU has 3DNow! Ext. features 
+</member>
+        <member name="M:SDL_Has3DNow">
+This function returns true if the CPU has 3DNow features 
+</member>
+        <member name="M:SDL_HasMMXExt">
+This function returns true if the CPU has MMX Ext. features 
+</member>
+        <member name="M:SDL_HasMMX">
+This function returns true if the CPU has MMX features 
+</member>
+        <member name="M:SDL_CDClose(SDL_CD*)">
+Closes the handle for the CD-ROM drive 
+</member>
+        <member name="M:SDL_CDEject(SDL_CD*)">
+Eject CD-ROM
+ *  @return returns 0, or -1 on error
+
+</member>
+        <member name="M:SDL_CDStop(SDL_CD*)">
+Stop play
+ *  @return returns 0, or -1 on error
+
+</member>
+        <member name="M:SDL_CDResume(SDL_CD*)">
+Resume play
+ *  @return returns 0, or -1 on error
+
+</member>
+        <member name="M:SDL_CDPause(SDL_CD*)">
+Pause play
+ *  @return returns 0, or -1 on error
+
+</member>
+        <member name="M:SDL_CDPlay(SDL_CD*,System.Int32,System.Int32)">
+Play the given CD starting at 'start' frame for 'length' frames.
+@return It returns 0, or -1 if there was an error.
+
+</member>
+        <member name="M:SDL_CDPlayTracks(SDL_CD*,System.Int32,System.Int32,System.Int32,System.Int32)">
+  Play the given CD starting at 'start_track' and 'start_frame' for 'ntracks'
+  tracks and 'nframes' frames.  If both 'ntrack' and 'nframe' are 0, play 
+  until the end of the CD.  This function will skip data tracks.
+  This function should only be called after calling SDL_CDStatus() to 
+  get track information about the CD.
+  For example:
+      @code
+	// Play entire CD:
+	if ( CD_INDRIVE(SDL_CDStatus(cdrom)) )
+		SDL_CDPlayTracks(cdrom, 0, 0, 0, 0);
+	// Play last track:
+	if ( CD_INDRIVE(SDL_CDStatus(cdrom)) ) {
+		SDL_CDPlayTracks(cdrom, cdrom-&gt;numtracks-1, 0, 0, 0);
+	}
+	// Play first and second track and 10 seconds of third track:
+	if ( CD_INDRIVE(SDL_CDStatus(cdrom)) )
+		SDL_CDPlayTracks(cdrom, 0, 0, 2, 10);
+      @endcode
+
+  @return This function returns 0, or -1 if there was an error.
+
+</member>
+        <member name="M:SDL_CDStatus(SDL_CD*)">
+This function returns the current status of the given drive.
+If the drive has a CD in it, the table of contents of the CD and current
+play position of the CD will be stored in the SDL_CD structure.
+
+</member>
+        <member name="M:SDL_CDOpen(System.Int32)">
+Opens a CD-ROM drive for access.  It returns a drive handle on success,
+or NULL if the drive was invalid or busy.  This newly opened CD-ROM
+becomes the default CD used when other CD functions are passed a NULL
+CD-ROM handle.
+Drives are numbered starting with 0.  Drive 0 is the system default CD-ROM.
+
+</member>
+        <member name="M:SDL_CDName(System.Int32)">
+Returns a human-readable, system-dependent identifier for the CD-ROM.
+Example:
+ - "/dev/cdrom"
+ - "E:"
+ - "/dev/disk/ide/1/master"
+
+</member>
+        <member name="M:SDL_CDNumDrives">
+@name Frames / MSF Conversion Functions
+ *  Conversion functions from frames to Minute/Second/Frames and vice versa
+
+Returns the number of CD-ROM drives on the system, or -1 if
+SDL_Init() has not been called with the SDL_INIT_CDROM flag.
+
+</member>
+        <member name="F:SDL_CD.numtracks">
+The rest of this structure is only valid if there's a CD in drive 
+</member>
+        <member name="T:SDL_CD">
+This structure is only current as of the last call to SDL_CDStatus() 
+</member>
+        <member name="T:SDL_CDtrack">
+Given a status, returns true if there's a disk in the drive 
+</member>
+        <member name="M:SDL_UnregisterApp">
+This can also be called, but is no longer necessary (SDL_Quit calls it) 
+</member>
+        <member name="M:SDL_RegisterApp(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.UInt32,System.Void*)">
+This can also be called, but is no longer necessary 
+</member>
+        <member name="M:SDL_SetModuleHandle(System.Void*)">
+@name From the SDL library code -- needed for registering the app on Win32 
+@file begin_code.h
+This file sets things up for C dynamic library function definitions,
+static inlined functions, and structures aligned at 4-byte alignment.
+If you don't like ugly C preprocessor code, don't look at this file. :)
+
+@file begin_code.h
+This shouldn't be nested -- included it around code only.
+
+@def DECLSPEC
+Some compilers use a special export keyword
+
+@def SDLCALL
+By default SDL uses the C calling convention
+
+@file begin_code.h
+Force structure packing at 4 byte alignment.
+This is necessary if the header is included in code which has structure
+packing set to an alternate value, say for loading structures from disk.
+The packing is reset to the previous value in close_code.h 
+
+@def SDL_INLINE_OKAY
+Set up compiler-specific options for inlining functions
+
+@def __inline__
+If inlining isn't supported, remove "__inline__", turning static
+inlined functions into static functions (resulting in code bloat
+in all files which include the offending header files)
+
+@def NULL
+Apparently this is needed by several Windows compilers
+
+This should be called from your WinMain() function, if any 
+</member>
+        <member name="M:SDL_main(System.Int32,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte**)">
+@file SDL.h
+ *  Main include header for the SDL library
+
+@file SDL_main.h
+ *  Redefine main() on Win32 and MacOS so that it is called by winmain.c
+
+The application's main() function must be called with C linkage,
+ *  and should be declared like this:
+ *      @code
+ *      #ifdef __cplusplus
+ *      extern "C"
+ *      #endif
+ *	int main(int argc, char *argv[])
+ *	{
+ *	}
+ *      @endcode
+
+The prototype for the application's main() function 
+</member>
+        <member name="D:SoundPtr">
+Wskaźnikk na klasę Sound
+</member>
+        <member name="M:Sound.LoadSfx(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Wczytaj efekty dźwiekowe
+</member>
+        <member name="M:Sound.LoadMusic(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Wczytaj muzykę
+</member>
+        <member name="M:Sound.PlaySfx(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Granie efektów dźwiękowych
+</member>
+        <member name="M:Sound.PlayMusic(std.basic_string&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte,std.char_traits{System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte},std.allocator&lt;System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Granie muzyki
+</member>
+        <member name="M:Sound.LoadSounds">
+Wczytanie dźwięków z dysku
+</member>
+        <member name="M:Sound.#ctor">
+Domyślny konstruktor
+</member>
+        <member name="M:SDL_Linked_Version">
+This macro can be used to fill a version structure with the compile-time
+version of the SDL library.
+
+This macro turns the version numbers into a numeric value:
+ *  (1,2,3) -&gt; (1203)
+ *  This assumes that there will never be more than 100 patchlevels
+
+This is the version number macro for the current SDL version 
+This macro will evaluate to true if compiled with SDL at least X.Y.Z 
+This function gets the version of the dynamically linked SDL library.
+ *  it should NOT be used to fill a version structure, instead you should
+ *  use the SDL_Version() macro.
+
+</member>
+        <member name="M:SDL_CloseAudio">
+This function shuts down audio processing and closes the audio device.
+
+</member>
+        <member name="M:SDL_LockAudio">
+@name Audio Locks
+The lock manipulated by these functions protects the callback function.
+During a LockAudio/UnlockAudio pair, you can be guaranteed that the
+callback function is not running.  Do not call these from the callback
+function or you will cause deadlock.
+
+</member>
+        <member name="M:SDL_MixAudio(System.Byte*,System.Byte!System.Runtime.CompilerServices.IsConst*,System.UInt32,System.Int32)">
+This takes two audio buffers of the playing audio format and mixes
+them, performing addition, volume adjustment, and overflow clipping.
+The volume ranges from 0 - 128, and should be set to SDL_MIX_MAXVOLUME
+for full audio volume.  Note this does not change hardware volume.
+This is provided for convenience -- you can mix your own audio data.
+
+</member>
+        <member name="M:SDL_ConvertAudio(SDL_AudioCVT*)">
+Once you have initialized the 'cvt' structure using SDL_BuildAudioCVT(),
+created an audio buffer cvt-&gt;buf, and filled it with cvt-&gt;len bytes of
+audio data in the source format, this function will convert it in-place
+to the desired format.
+The data conversion may expand the size of the audio data, so the buffer
+cvt-&gt;buf should be allocated after the cvt structure is initialized by
+SDL_BuildAudioCVT(), and should be cvt-&gt;len*cvt-&gt;len_mult bytes long.
+
+</member>
+        <member name="M:SDL_BuildAudioCVT(SDL_AudioCVT*,System.UInt16,System.Byte,System.Int32,System.UInt16,System.Byte,System.Int32)">
+ This function takes a source format and rate and a destination format
+ and rate, and initializes the 'cvt' structure with information needed
+ by SDL_ConvertAudio() to convert a buffer of audio data from one format
+ to the other.
+
+ @return This function returns 0, or -1 if there was an error.
+
+</member>
+        <member name="M:SDL_FreeWAV(System.Byte*)">
+Compatibility convenience function -- loads a WAV from a file 
+This function frees data previously allocated with SDL_LoadWAV_RW()
+
+</member>
+        <member name="M:SDL_LoadWAV_RW(SDL_RWops*,System.Int32,SDL_AudioSpec*,System.Byte**,System.UInt32*)">
+ This function loads a WAVE from the data source, automatically freeing
+ that source if 'freesrc' is non-zero.  For example, to load a WAVE file,
+ you could do:
+	@code SDL_LoadWAV_RW(SDL_RWFromFile("sample.wav", "rb"), 1, ...); @endcode
+
+ If this function succeeds, it returns the given SDL_AudioSpec,
+ filled with the audio data format of the wave data, and sets
+ 'audio_buf' to a malloc()'d buffer containing the audio data,
+ and sets 'audio_len' to the length of that audio buffer, in bytes.
+ You need to free the audio buffer with SDL_FreeWAV() when you are 
+ done with it.
+
+ This function returns NULL and sets the SDL error message if the 
+ wave file cannot be opened, uses an unknown data format, or is 
+ corrupt.  Currently raw and MS-ADPCM WAVE files are supported.
+
+</member>
+        <member name="M:SDL_PauseAudio(System.Int32)">
+This function pauses and unpauses the audio callback processing.
+It should be called with a parameter of 0 after opening the audio
+device to start playing sound.  This is so you can safely initialize
+data for your callback function after opening the audio device.
+Silence will be written to the audio device during the pause.
+
+</member>
+        <member name="M:SDL_GetAudioStatus">
+Get the current audio state 
+</member>
+        <member name="M:SDL_OpenAudio(SDL_AudioSpec*,SDL_AudioSpec*)">
+ This function opens the audio device with the desired parameters, and
+ returns 0 if successful, placing the actual hardware parameters in the
+ structure pointed to by 'obtained'.  If 'obtained' is NULL, the audio
+ data passed to the callback function will be guaranteed to be in the
+ requested format, and will be automatically converted to the hardware
+ audio format if necessary.  This function returns -1 if it failed 
+ to open the audio device, or couldn't set up the audio thread.
+
+ The audio device starts out playing silence when it's opened, and should
+ be enabled for playing by calling SDL_PauseAudio(0) when you are ready
+ for your audio callback function to be called.  Since the audio driver
+ may modify the requested size of the audio buffer, you should allocate
+ any local mixing buffers after you open the audio device.
+
+ @sa SDL_AudioSpec
+
+</member>
+        <member name="M:SDL_AudioDriverName(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte*,System.Int32)">
+This function fills the given character buffer with the name of the
+current audio driver, and returns a pointer to it if the audio driver has
+been initialized.  It returns NULL if no driver has been initialized.
+
+</member>
+        <member name="M:SDL_AudioInit(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+@name Audio Init and Quit
+These functions are used internally, and should not be used unless you
+have a specific need to specify the audio driver you want to use.
+You should normally use SDL_Init() or SDL_InitSubSystem().
+
+</member>
+        <member name="T:SDL_AudioCVT">
+@name Audio format flags
+defaults to LSB byte order
+
+@name Native audio byte ordering
+
+A structure to hold a set of audio conversion filters and buffers 
+</member>
+        <member name="F:SDL_AudioSpec.callback">
+  This function is called when the audio device needs more data.
+
+  @param[out] stream	A pointer to the audio data buffer
+  @param[in]  len	The length of the audio buffer in bytes.
+
+  Once the callback returns, the buffer will no longer be valid.
+  Stereo samples are stored in a LRLRLR ordering.
+
+</member>
+        <member name="M:SDL_KillThread(SDL_Thread*)">
+Forcefully kill a thread without worrying about its state 
+</member>
+        <member name="M:SDL_WaitThread(SDL_Thread*,System.Int32*)">
+Wait for a thread to finish.
+ *  The return code for the thread function is placed in the area
+ *  pointed to by 'status', if 'status' is not NULL.
+
+</member>
+        <member name="M:SDL_GetThreadID(SDL_Thread*)">
+Get the 32-bit thread identifier for the specified thread,
+ *  equivalent to SDL_ThreadID() if the specified thread is NULL.
+
+</member>
+        <member name="M:SDL_ThreadID">
+Get the 32-bit thread identifier for the current thread 
+</member>
+        <member name="M:SDL_CreateThread(=FUNC:System.Int32(System.Void*),System.Void*)">
+Create a thread 
+</member>
+        <member name="M:SDL_CondWaitTimeout(SDL_cond*,SDL_mutex*,System.UInt32)">
+Waits for at most 'ms' milliseconds, and returns 0 if the condition
+ *  variable is signaled, SDL_MUTEX_TIMEDOUT if the condition is not
+ *  signaled in the allotted time, and -1 on error.
+ *  On some platforms this function is implemented by looping with a delay
+ *  of 1 ms, and so should be avoided if possible.
+
+</member>
+        <member name="M:SDL_CondWait(SDL_cond*,SDL_mutex*)">
+Wait on the condition variable, unlocking the provided mutex.
+ *  The mutex must be locked before entering this function!
+ *  The mutex is re-locked once the condition variable is signaled.
+ *  @return 0 when it is signaled, or -1 on error.
+
+</member>
+        <member name="M:SDL_CondBroadcast(SDL_cond*)">
+Restart all threads that are waiting on the condition variable,
+ *  @return 0 or -1 on error.
+
+</member>
+        <member name="M:SDL_CondSignal(SDL_cond*)">
+Restart one of the threads that are waiting on the condition variable,
+ *  @return 0 or -1 on error.
+
+</member>
+        <member name="M:SDL_DestroyCond(SDL_cond*)">
+Destroy a condition variable 
+</member>
+        <member name="M:SDL_CreateCond">
+Create a condition variable 
+</member>
+        <member name="T:SDL_cond">
+@name Condition_variable_functions                           
+The SDL condition variable structure, defined in SDL_cond.c 
+</member>
+        <member name="M:SDL_SemValue(SDL_semaphore*)">
+Returns the current count of the semaphore 
+</member>
+        <member name="M:SDL_SemPost(SDL_semaphore*)">
+Atomically increases the semaphore's count (not blocking).
+ *  @return 0, or -1 on error.
+
+</member>
+        <member name="M:SDL_SemWaitTimeout(SDL_semaphore*,System.UInt32)">
+Variant of SDL_SemWait() with a timeout in milliseconds, returns 0 if
+ *  the wait succeeds, SDL_MUTEX_TIMEDOUT if the wait does not succeed in
+ *  the allotted time, and -1 on error.
+ *
+ *  On some platforms this function is implemented by looping with a delay
+ *  of 1 ms, and so should be avoided if possible.
+
+</member>
+        <member name="M:SDL_SemTryWait(SDL_semaphore*)">
+Non-blocking variant of SDL_SemWait().
+ *  @return 0 if the wait succeeds,
+ *  SDL_MUTEX_TIMEDOUT if the wait would block, and -1 on error.
+
+</member>
+        <member name="M:SDL_SemWait(SDL_semaphore*)">
+This function suspends the calling thread until the semaphore pointed 
+to by sem has a positive count. It then atomically decreases the semaphore
+count.
+
+</member>
+        <member name="M:SDL_DestroySemaphore(SDL_semaphore*)">
+Destroy a semaphore 
+</member>
+        <member name="M:SDL_CreateSemaphore(System.UInt32)">
+Create a semaphore, initialized with value, returns NULL on failure. 
+</member>
+        <member name="T:SDL_semaphore">
+@name Semaphore functions                                    
+The SDL semaphore structure, defined in SDL_sem.c 
+</member>
+        <member name="M:SDL_DestroyMutex(SDL_mutex*)">
+Destroy a mutex 
+</member>
+        <member name="M:SDL_mutexV(SDL_mutex*)">
+Unlock the mutex
+ *  @return 0, or -1 on error
+ *
+ *  It is an error to unlock a mutex that has not been locked by
+ *  the current thread, and doing so results in undefined behavior.
+
+</member>
+        <member name="M:SDL_mutexP(SDL_mutex*)">
+Lock the mutex
+ *  @return 0, or -1 on error
+
+</member>
+        <member name="M:SDL_CreateMutex">
+Create a mutex, initialized unlocked 
+</member>
+        <member name="M:SDL_WriteLE16(SDL_RWops*,System.UInt16)">
+@name Write an item of native format to the specified endianness 
+</member>
+        <member name="M:SDL_ReadLE16(SDL_RWops*)">
+@name Seek Reference Points 
+@name Macros to easily read and write from an SDL_RWops structure 
+@name Read an item of the specified endianness and return in native format 
+</member>
+        <member name="M:SDL_RWFromFile(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+@name Functions to create SDL_RWops structures from various data sources 
+</member>
+        <member name="F:SDL_RWops.close">
+Close and free an allocated SDL_FSops structure 
+</member>
+        <member name="F:SDL_RWops.write">
+Write exactly 'num' objects each of size 'objsize' from the area
+	 *  pointed at by 'ptr' to data source.
+	 *  Returns 'num', or -1 if the write failed.
+
+</member>
+        <member name="F:SDL_RWops.read">
+Read up to 'maxnum' objects each of size 'size' from the data
+	 *  source to the area pointed at by 'ptr'.
+	 *  Returns the number of objects read, or -1 if the read failed.
+
+</member>
+        <member name="F:SDL_RWops.seek">
+Seek to 'offset' relative to whence, one of stdio's whence values:
+	 *	SEEK_SET, SEEK_CUR, SEEK_END
+	 *  Returns the final offset in the data source.
+
+</member>
+        <member name="M:SDL_SetError(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,BTEllipsis)">
+@file close_code.h
+This file reverses the effects of begin_code.h and should be included
+after you finish any function and structure declarations in your headers
+
+@file close_code.h
+Reset structure packing at previous byte alignment
+
+@file SDL_rwops.h
+ *  This file provides a general interface for SDL to read and write
+ *  data sources.  It can easily be extended to files, memory, etc.
+
+@file SDL_error.h
+Simple error message routines for SDL
+
+@file begin_code.h
+This file sets things up for C dynamic library function definitions,
+static inlined functions, and structures aligned at 4-byte alignment.
+If you don't like ugly C preprocessor code, don't look at this file. :)
+
+@file begin_code.h
+This shouldn't be nested -- included it around code only.
+
+@def DECLSPEC
+Some compilers use a special export keyword
+
+@def SDLCALL
+By default SDL uses the C calling convention
+
+@file begin_code.h
+Force structure packing at 4 byte alignment.
+This is necessary if the header is included in code which has structure
+packing set to an alternate value, say for loading structures from disk.
+The packing is reset to the previous value in close_code.h 
+
+@def SDL_INLINE_OKAY
+Set up compiler-specific options for inlining functions
+
+@def __inline__
+If inlining isn't supported, remove "__inline__", turning static
+inlined functions into static functions (resulting in code bloat
+in all files which include the offending header files)
+
+@def NULL
+Apparently this is needed by several Windows compilers
+
+@name Public functions
+
+</member>
+        <member name="M:SDL_iconv_string(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,System.UInt32)">
+This function converts a string between encodings in one pass, returning a
+ *  string that must be freed with SDL_free() or NULL on error.
+
+</member>
+        <member name="T:_SDL_iconv_t">
+@name SDL_ICONV Error Codes
+ *  The SDL implementation of iconv() returns these error codes 
+
+</member>
+        <member name="M:SDL_getenv(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+@file begin_code.h
+This file sets things up for C dynamic library function definitions,
+static inlined functions, and structures aligned at 4-byte alignment.
+If you don't like ugly C preprocessor code, don't look at this file. :)
+
+@file begin_code.h
+This shouldn't be nested -- included it around code only.
+
+@def DECLSPEC
+Some compilers use a special export keyword
+
+@def SDLCALL
+By default SDL uses the C calling convention
+
+@file begin_code.h
+Force structure packing at 4 byte alignment.
+This is necessary if the header is included in code which has structure
+packing set to an alternate value, say for loading structures from disk.
+The packing is reset to the previous value in close_code.h 
+
+@def SDL_INLINE_OKAY
+Set up compiler-specific options for inlining functions
+
+@def __inline__
+If inlining isn't supported, remove "__inline__", turning static
+inlined functions into static functions (resulting in code bloat
+in all files which include the offending header files)
+
+@def NULL
+Apparently this is needed by several Windows compilers
+
+</member>
+        <member name="D:SDL_dummy_uint8">
+@name Make sure the types really have the right sizes 
+</member>
+        <member name="D:int8_t">
+@file SDL_types.h
+ *  @deprecated Use SDL_stdinc.h instead.
+
+@file SDL_stdinc.h
+ *  This is a general header that includes C language support
+
+@file SDL_platform.h
+ *  Try to get a standard set of platform defines
+
+
+@file SDL_stdinc.h
+ *  This is a general header that includes C language support
+
+@file SDL_platform.h
+ *  Try to get a standard set of platform defines
+
+</member>
+        <member name="M:NRand">
+Losowanie liczb
+</member>
+        <member name="M:IntToStr(System.Int32)">
+Zamiana inta na stringa
+</member>
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+        <!-- Discarding badly formed XML document comment for member 'T:SDL_keysym'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_GetKeyState(System.Int32*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:SDL_UpperBlit(SDL_Surface*,SDL_Rect*,SDL_Surface*,SDL_Rect*)'. -->
+        <!-- Discarding badly formed XML document comment for member 'D:SDL_NewTimerCallback'. -->
+    </members>
+</doc>

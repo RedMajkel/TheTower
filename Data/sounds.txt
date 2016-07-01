@@ -1,0 +1,3 @@
+music game Data/game.ogg
+
+sfx jump Data/jump.ogg
